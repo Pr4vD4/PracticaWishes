@@ -1,0 +1,78 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    height: 100vh;
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+
+    background-image: url("../img/bg.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+.envelope {
+    position: absolute;
+    width: 7vw;
+    height: 7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: .85;
+}
+
+.bag {
+    display: flex;
+    height: 40%;
+    /*width: 20%;*/
+    margin-top: 60vh;
+    overflow: hidden;
+
+}
+.bag img {
+    height: 100%;
+    object-fit: contain;
+
+}
+
+.envelope img {
+    height: 100%;
+}
+
+.wish {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    backdrop-filter: blur(10px);
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: 10;
+}
+
+.message {
+    position: relative;
+    /*background-color: rgba(255, 136, 0, 0.95);*/
+    background-image: url("../img/wish_envelope.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 0;
+    height: 0;
+
+    /*min-width: 500px;*/
+    /*min-height: 250px;*/
+}
+
+.message-text {
+    position: absolute;
+    top: 42%;
+    left: 30%;
+    width: 50%;
+    height: 50%;
+    /*font-size: 3em;*/
+    color: blue;
+}
