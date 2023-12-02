@@ -8,14 +8,6 @@ function hideWish(event) {
 
     anime({
         targets: wish,
-        // width: {
-        //     value: () => 0,
-        //     easing: 'easeInBack'
-        // },
-        // height: {
-        //     value: () => 0,
-        //     easing: 'easeInBack'
-        // },
         scale: {
             value: 0,
             easing: 'easeInBack'
@@ -34,19 +26,6 @@ function hideWish(event) {
         },
     });
 
-    // anime({
-    //     targets: wish,
-    //     backdropFilter: {
-    //         value: () => `blur(${0}px)`,
-    //         easing: "linear"
-    //     },
-    //     duration: () => 1000, // Random duration between 500 and 1000 ms
-    //     complete: function() {
-    //         wish.addEventListener('touchstart', hideWish)
-    //         wish.addEventListener('click', hideWish)
-    //     },
-    // });
-
 }
 function showWish(event) {
 
@@ -59,9 +38,6 @@ function showWish(event) {
     const wish = document.createElement('div')
     wish.className = 'wish'
 
-    wish.style.width = '50px'
-    wish.style.height = '50px'
-
     wish.style.top = event.touches[0].pageY  + 'px'
     wish.style.left = event.touches[0].pageX  + 'px'
 
@@ -73,7 +49,6 @@ function showWish(event) {
 
     wishContainer.append(wish)
 
-    // wish.addEventListener('click', hideWish)
     wish.addEventListener('touchstart', hideWish)
 
 

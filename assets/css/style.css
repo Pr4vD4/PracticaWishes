@@ -1,3 +1,5 @@
+@import url('fonts.css');
+
 body {
     display: flex;
     flex-direction: column;
@@ -60,17 +62,18 @@ body {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    width: 0;
-    height: 0;
+    width: 110px;
+    height: 150px;
     z-index: 5;
 }
 
 .wish-message {
+    font-family: 'Neucha', sans-serif;
     position: absolute;
     top: 42%;
-    left: 30%;
-    width: 50%;
+    left: 25%;
+    width: 60%;
     height: 50%;
-    font-size: .2rem;
+    font-size: .7rem;
     color: blue;
 }
