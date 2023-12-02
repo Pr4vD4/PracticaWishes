@@ -1,24 +1,25 @@
-function hideWish() {
-    const message = document.querySelector('.message')
-    const wish = document.querySelector('.wish')
+function hideWish(event) {
 
-    const text = document.querySelector('.message-text')
+    event.stopPropagation()
 
+    const wish = event.currentTarget
 
-    wish.removeEventListener('touchstart', hideWish)
-    wish.removeEventListener('click', hideWish)
+    const wishMessage = wish.querySelector('.wish-message')
 
     anime({
-        targets: message,
-        width: {
-            value: () => 0,
+        targets: wish,
+        // width: {
+        //     value: () => 0,
+        //     easing: 'easeInBack'
+        // },
+        // height: {
+        //     value: () => 0,
+        //     easing: 'easeInBack'
+        // },
+        scale: {
+            value: 0,
             easing: 'easeInBack'
         },
-        height: {
-            value: () => 0,
-            easing: 'easeInBack'
-        },
-
         opacity: {
             value: () => 0,
             easing: "linear"
@@ -27,82 +28,67 @@ function hideWish() {
             value: () => '25vh',
             easing: 'easeInExpo'
         },
-        update: () => {
-            text.style.fontSize = `${message.offsetWidth / 14}px`
-        },
         duration: () => 1000, // Random duration between 500 and 1000 ms
         complete: function() {
-
+            wish.remove()
         },
     });
+
+    // anime({
+    //     targets: wish,
+    //     backdropFilter: {
+    //         value: () => `blur(${0}px)`,
+    //         easing: "linear"
+    //     },
+    //     duration: () => 1000, // Random duration between 500 and 1000 ms
+    //     complete: function() {
+    //         wish.addEventListener('touchstart', hideWish)
+    //         wish.addEventListener('click', hideWish)
+    //     },
+    // });
+
+}
+function showWish(event) {
+
+    console.log(event.touches)
+
+    event.stopPropagation()
+
+    const wishContainer = document.querySelector('.wish-container')
+
+    const wish = document.createElement('div')
+    wish.className = 'wish'
+
+    wish.style.width = '50px'
+    wish.style.height = '50px'
+
+    wish.style.top = event.touches[0].pageY  + 'px'
+    wish.style.left = event.touches[0].pageX  + 'px'
+
+    const wishMessage = document.createElement('div')
+    wishMessage.className = 'wish-message'
+    wishMessage.textContent = getRandomWish()
+
+    wish.append(wishMessage)
+
+    wishContainer.append(wish)
+
+    // wish.addEventListener('click', hideWish)
+    wish.addEventListener('touchstart', hideWish)
+
 
     anime({
         targets: wish,
-        backdropFilter: {
-            value: () => `blur(${0}px)`,
-            easing: "linear"
-        },
-        duration: () => 1000, // Random duration between 500 and 1000 ms
-        complete: function() {
-            wish.style.width = 0
-            wish.style.height = 0
-
-            wish.addEventListener('touchstart', hideWish)
-            wish.addEventListener('click', hideWish)
-        },
-    });
-
-}
-function showWish() {
-    const message = document.querySelector('.message')
-    const wish = document.querySelector('.wish')
-    const text = document.querySelector('.message-text')
-
-    text.textContent = getRandomWish()
-
-
-    wish.style.width = '100%'
-    wish.style.height = '100%'
-
-    message.style.transform = "translateY(0)"
-
-    anime({
-        targets: message,
-        width: {
-            value: () => `${50}%`,
-            easing: 'easeInOutBack'
-        },
-        height: {
-            value: () => `${90}%`,
-            easing: 'easeInOutBack'
+        scale: {
+            value: 5
         },
         opacity: {
             value: () => 1,
             easing: "linear"
         },
-        update: () => {
-            text.style.fontSize = `${message.offsetWidth / 16}px`
-        },
 
         duration: () => 1000, // Random duration between 500 and 1000 ms
         complete: function() {
         },
     });
-
-    anime({
-        targets: wish,
-        backdropFilter: {
-            value: () => `blur(${10}px)`,
-            easing: "linear"
-        },
-        duration: () => 1000, // Random duration between 500 and 1000 ms
-        complete: function() {
-
-            wish.addEventListener('touchstart', hideWish)
-            wish.addEventListener('click', hideWish)
-
-        },
-    });
-
-
 }
